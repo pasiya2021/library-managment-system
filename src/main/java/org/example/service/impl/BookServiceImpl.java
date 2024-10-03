@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookServiceImpl implements BookService {
 
@@ -28,6 +30,16 @@ public class BookServiceImpl implements BookService {
 
         BookEntity entity = mapper.map(book,BookEntity.class);
         repository.save(entity);
+    }
+
+    @Override
+    public List<BookEntity> getBooks() {
+        return repository.findAll();
+    }
+
+    @Override
+    public void deleteBook(Long id) {
+        repository.deleteById(id);
     }
 
 }
