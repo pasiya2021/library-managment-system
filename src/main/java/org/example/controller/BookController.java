@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/book")
-@ResponseStatus(HttpStatus.CREATED)
 public class BookController {
 
     @Autowired
@@ -21,6 +20,7 @@ public class BookController {
     //add method to add book
 
     @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> addBook(@RequestBody Book book) {
 
         service.addBook(book);
@@ -33,8 +33,16 @@ public class BookController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> deleteBook(@PathVariable("id") Long id) {
-        service.deleteBook(id);
-        return ResponseEntity.ok("Book deleted successfully");
+        return service.deleteBook(id)? ResponseEntity.ok("Book deleted successfully") : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Book not found");
+
+
+    }
+
+    @GetMapping("/get/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Book getBookById(@PathVariable("id") Long id) {
+        return service.getBookById(id);
     }
 }
