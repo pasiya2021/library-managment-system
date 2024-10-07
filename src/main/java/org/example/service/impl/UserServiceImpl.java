@@ -17,12 +17,13 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository Repository;
 
-    ModelMapper mapper;
+    private final ModelMapper mapper;
 
 
-    public void setup() {
-        this.mapper = new ModelMapper();
-    }
+//    @Bean
+//    public void setsup() {
+//        this.mapper = new ModelMapper();
+//    }
 
     @Override
     public List<UserEntity> getAllUsers() {
@@ -45,5 +46,25 @@ public class UserServiceImpl implements UserService {
 //        userEntity.setCountry(user.getCountry());
 //        userEntity.setPhoneNumber(user.getPhoneNumber());
 //        Repository.save(userEntity);
+    }
+
+    @Override
+    public UserEntity getUserById(Long id) {
+        return Repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+            Repository.deleteById(id);
+    }
+
+    @Override
+    public User findByUserName(String userName) {
+        return mapper.map(Repository.findByUserName(userName),User.class);
+    }
+
+    @Override
+    public boolean existUser(String userName) {
+        return Repository.existsUserByUserName(userName);
     }
 }

@@ -5,6 +5,8 @@ import org.example.Entity.UserEntity;
 import org.example.dto.User;
 import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +26,31 @@ public class UserController {
     }
 
     @PostMapping("/add-user")
-    public void addUser(@RequestBody User user) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> addUser(@RequestBody User user) {
         Service.addUser(user);
+        return ResponseEntity.ok("User added successfully");
+
+    }
+
+    @GetMapping("/get-user/{id}")
+    public UserEntity getUserById(@PathVariable("id") Long id) {
+        return Service.getUserById(id);
+    }
+
+    @DeleteMapping("/delete-user/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable("id") Long id) {
+        Service.deleteUser(id);
+        return ResponseEntity.ok("User deleted successfully");
+    }
+
+    @GetMapping("/find-user/{userName}")
+    public User findByUserName(@PathVariable String userName) {
+        return Service.findByUserName(userName);
+    }
+
+    @GetMapping("/exist-user/{userName}")
+    public boolean existUser(@PathVariable("userName") String userName) {
+        return Service.existUser(userName);
     }
 }

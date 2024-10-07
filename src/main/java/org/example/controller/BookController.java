@@ -45,4 +45,5 @@ public class BookController {
     public Book getBookById(@PathVariable("id") Long id) {
         return service.getBookById(id);
     }
+
 }

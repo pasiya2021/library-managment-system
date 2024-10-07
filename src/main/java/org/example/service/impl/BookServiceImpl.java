@@ -1,5 +1,6 @@
 package org.example.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import org.example.Entity.BookEntity;
 import org.example.dto.Book;
 import org.example.repository.BookRepository;
@@ -13,10 +14,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class BookServiceImpl implements BookService {
 
-    @Autowired
-    BookRepository repository;
+
+    private final BookRepository repository;
+    private final ModelMapper mapper;
 
 
 //    private final BookRepository repository;
@@ -27,12 +30,12 @@ public class BookServiceImpl implements BookService {
 //    }
 //    dependency injection is done by constructor - All final properties injected by constructor(dependency injection),dependency injection is done by constructor
 
-    ModelMapper mapper;
-
-    @Bean
-    public void setup() {
-        this.mapper = new ModelMapper();
-    }
+//    ModelMapper mapper;
+//
+//    @Bean
+//    public void setup() {
+//        this.mapper = new ModelMapper();
+//    }
 
     @Override
     public void addBook(Book book) {

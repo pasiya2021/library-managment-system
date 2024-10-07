@@ -12,4 +12,12 @@ public interface UserService {
     List<UserEntity> getAllUsers();
 
     void addUser(User user);
+
+    UserEntity getUserById(Long id);
+
+    void deleteUser(Long id);
+
+    User findByUserName(String userName);
+
+    boolean existUser(String userName);
 }
