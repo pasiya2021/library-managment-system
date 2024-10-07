@@ -19,6 +19,14 @@ public class BookServiceImpl implements BookService {
     BookRepository repository;
 
 
+//    private final BookRepository repository;
+//
+//    @Autowired
+//    public BookServiceImpl(BookRepository repository) {
+//        this.repository = repository;
+//    }
+//    dependency injection is done by constructor - All final properties injected by constructor(dependency injection),dependency injection is done by constructor
+
     ModelMapper mapper;
 
     @Bean
