@@ -25,6 +25,7 @@ public class UserController {
         return Service.getAllUsers();
     }
 
+
     @PostMapping("/add-user")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> addUser(@RequestBody User user) {
@@ -53,4 +54,6 @@ public class UserController {
     public boolean existUser(@PathVariable("userName") String userName) {
         return Service.existUser(userName);
     }
+
+
 }
