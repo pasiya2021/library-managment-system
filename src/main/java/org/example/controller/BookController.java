@@ -39,10 +39,21 @@ public class BookController {
 
 
     }
-
-    @GetMapping("/get/{id}")
+//
+//    @GetMapping("/search/{id}")
+//    public Book getBookById(@PathVariable Long id) {
+//        return service.getBookById(id);
+//    }
+//
+//
+    @GetMapping("/get/{title}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Book getBookById(@PathVariable("id") Long id) {
+    public Book getBookByTitle(@PathVariable("title") String title) {
+        return service.getBookByTitle(title);
+    }
+
+    @GetMapping("/search/{id}")
+    public Book getBookById(@PathVariable Long id) {
         return service.getBookById(id);
     }
 

@@ -22,6 +22,5 @@ public class UserEntity {
     private String userName;
     private String email;
     private String address;
-    private String country;
     private String phoneNumber;
 }
