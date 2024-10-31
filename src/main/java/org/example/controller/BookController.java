@@ -32,13 +32,20 @@ public class BookController {
         return service.getBooks();
     }
 
-    @DeleteMapping("/delete/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> deleteBook(@PathVariable("id") Long id) {
-        return service.deleteBook(id)? ResponseEntity.ok("Book deleted successfully") : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Book not found");
+//    @DeleteMapping("/delete/{id}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public ResponseEntity<String> deleteBook(@PathVariable("id") Long id) {
+//        return service.deleteBook(id)? ResponseEntity.ok("Book deleted successfully") : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Book not found");
+//
+//
+//    }
 
-
+    @DeleteMapping("/delete/{isbn}")
+    public ResponseEntity<String> deleteBook(@PathVariable("isbn") String isbn) {
+        service.deleteBookByIsbn(isbn);
+        return ResponseEntity.ok("Book deleted successfully");
     }
+
 //
 //    @GetMapping("/search/{id}")
 //    public Book getBookById(@PathVariable Long id) {
@@ -55,6 +62,13 @@ public class BookController {
     @GetMapping("/search/{id}")
     public Book getBookById(@PathVariable Long id) {
         return service.getBookById(id);
+    }
+
+    @PutMapping("/update/{isbn}")
+    public ResponseEntity<String> updateBook(@PathVariable("isbn") String isbn, @RequestBody Book updatedBook) {
+        service.updateBook(isbn, updatedBook);
+        return ResponseEntity.ok("Book updated successfully");
+
     }
 
 }

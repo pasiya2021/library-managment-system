@@ -19,8 +19,8 @@ public class BorrowBookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long borrowId;
-    private List<Long> books;
+    private String userName;
+    private String bookTitle;
     private Date date;
-    private double fine;
+    private String status;
 }

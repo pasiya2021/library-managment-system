@@ -13,10 +13,10 @@ import java.util.List;
 @NoArgsConstructor
 public class BorrowBook {
 
-    private Long id;
-    private Long borrowId;
-    private List<Long> books;
+
+    private String userName;
+    private String bookTitle;
     private Date date;
-    private double fine;
+    private String status;
 
 }

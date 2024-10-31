@@ -71,5 +71,27 @@ public class BookServiceImpl implements BookService {
        return mapper.map(byTitle,Book.class);
     }
 
+    @Override
+    public void updateBook(String isbn, Book updatedBook) {
+
+        BookEntity book = repository.findByIsbn(isbn);
+        if (book != null) {
+            book.setTitle(updatedBook.getTitle());
+            book.setAuthor(updatedBook.getAuthor());
+            book.setCategory(updatedBook.getCategory());
+            book.setQty(updatedBook.getQty());
+            repository.save(book);
+        }
+
+    }
+
+    @Override
+    public void deleteBookByIsbn(String isbn) {
+        BookEntity byIsbn = repository.findByIsbn(isbn);
+        if (byIsbn != null) {
+            repository.delete(byIsbn);
+        }
+    }
+
 
 }
